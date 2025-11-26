@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Finnies Next Door | Irish Sports Pub & Nightlife • South Bend</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #050814;
+      --bg-alt: #070b18;
+      --card: #101624;
+      --border: #1f2937;
+      --accent: #1db954;   /* Finnies green vibe */
+      --accent-soft: #0b3c26;
+      --gold: #fcd34d;     /* dome / ND gold */
+      --text: #f9fafb;
+      --muted: #9ca3af;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Inter", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 55%);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(to bottom, rgba(5,8,20,0.95), rgba(5,8,20,0.7));
+      border-bottom: 1px solid rgba(15,23,42,0.7);
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, #22c55e 0, #064e3b 40%, #020617 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(148,163,184,0.5);
+      box-shadow: 0 0 0 1px rgba(15,23,42,0.9);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .nav-title {
+      display: flex;
+      flex-direction: column;
+      font-size: 0.85rem;
+    }
+
+    .nav-title span:first-child {
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    .nav-title span:last-child {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .nav-links {
+      display: none;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      font-weight: 600;
+      font-size: 0.75rem;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      font-size: 0.8rem;
+      padding: 0.5rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: radial-gradient(circle at 0 0,#22c55e22,transparent 60%);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 3rem;
+    }
+
+    /* HERO */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0,1.4fr);
+      gap: 1.75rem;
+      align-items: center;
+      padding-top: 1.5rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(15,118,110,0.3);
+      border: 1px solid rgba(34,197,94,0.5);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+    }
+
+    .hero-badge span {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.1rem, 3.4vw, 3rem);
+      line-height: 1.1;
+      margin: 0.9rem 0 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .hero-highlight {
+      background: linear-gradient(90deg,var(--gold),#f97316);
+      -webkit-background-clip: text;
+      color: transparent;
+      font-weight: 800;
+    }
+
+    .hero p {
+      max-width: 32rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 1.1rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1.4rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .pill {
+      border-radius: 999px;
+      padding: 0.25rem 0.7rem;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.8);
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .btn-primary {
+      padding: 0.7rem 1.3rem;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(90deg,#22c55e,#16a34a);
+      color: #022c22;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 0.78rem;
+      cursor: pointer;
+    }
+
+    .btn-secondary {
+      padding: 0.65rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.7);
+      background: rgba(15,23,42,0.9);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.75rem;
+      cursor: pointer;
+      color: var(--muted);
+    }
+
+    .hero-footnote {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .hero-media {
+      position: relative;
+      border-radius: 1.75rem;
+      overflow: hidden;
+      border: 1px solid rgba(30,64,175,0.6);
+      box-shadow: 0 40px 120px rgba(0,0,0,0.9);
+      background: radial-gradient(circle at top,#1e293b,#020617);
+    }
+
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.97;
+    }
+
+    .hero-tag {
+      position: absolute;
+      left: 1.1rem;
+      bottom: 1.1rem;
+      padding: 0.5rem 0.9rem;
+      border-radius: 0.9rem;
+      background: rgba(15,23,42,0.85);
+      border: 1px solid rgba(148,163,184,0.6);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .hero-tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 12px #22c55e;
+    }
+
+    /* SECTION UTIL */
+
+    section {
+      margin-top: 3rem;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-header h2 {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .section-header span {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* TONIGHT */
+
+    .tonight {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 1.2rem;
+      background: radial-gradient(circle at top left,#0f172a,#020617 55%);
+      border-radius: 1.5rem;
+      border: 1px solid rgba(148,163,184,0.35);
+      padding: 1.25rem 1.3rem;
+    }
+
+    .tonight-main h3 {
+      margin: 0 0 0.4rem;
+      font-size: 1.05rem;
+    }
+
+    .tonight-main p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .tonight-grid {
+      display: grid;
+      grid-template-columns: repeat(2,minmax(0,1fr));
+      gap: 0.75rem;
+      margin-top: 1rem;
+      font-size: 0.8rem;
+    }
+
+    .chip {
+      padding: 0.45rem 0.6rem;
+      border-radius: 0.9rem;
+      border: 1px solid rgba(148,163,184,0.5);
+      background: rgba(15,23,42,0.9);
+    }
+
+    .tonight-side {
+      border-radius: 1rem;
+      background: radial-gradient(circle at top,#22c55e22,transparent 70%);
+      padding: 0.9rem 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .tonight-side strong { color: var(--gold); }
+
+    .tonight-hours {
+      margin-top: 0.5rem;
+      font-size: 0.78rem;
+    }
+
+    /* FEATURES */
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 1rem;
+    }
+
+    .feature-card {
+      border-radius: 1.25rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 1rem;
+      font-size: 0.85rem;
+    }
+
+    .feature-label {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .feature-card h3 {
+      margin: 0 0 0.4rem;
+      font-size: 0.98rem;
+    }
+
+    /* EVENTS PREVIEW */
+
+    .events {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+      gap: 0.9rem;
+      font-size: 0.82rem;
+    }
+
+    .event-card {
+      border-radius: 1rem;
+      background: linear-gradient(135deg,#0b1120,#020617);
+      border: 1px solid rgba(55,65,81,0.9);
+      padding: 0.85rem 0.9rem;
+    }
+
+    .event-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .event-title {
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .event-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      border-radius: 999px;
+      padding: 0.2rem 0.55rem;
+      border: 1px solid rgba(96,165,250,0.7);
+      font-size: 0.7rem;
+      color: #bfdbfe;
+    }
+
+    /* GALLERY */
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 0.5rem;
+    }
+
+    .gallery-grid .large {
+      grid-column: span 2;
+    }
+
+    .gallery-img {
+      border-radius: 1rem;
+      overflow: hidden;
+      border: 1px solid rgba(30,64,175,0.7);
+      background: #020617;
+      height: 0;
+      padding-bottom: 70%;
+      position: relative;
+    }
+    .gallery-img img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* INFO */
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: minmax(0,1.1fr) minmax(0,1fr);
+      gap: 1.2rem;
+      font-size: 0.85rem;
+    }
+
+    .info-card {
+      padding: 1rem;
+      border-radius: 1.25rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+    }
+
+    .info-card h3 {
+      margin-top: 0;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+
+    .info-list {
+      list-style: none;
+      margin: 0.4rem 0 0;
+      padding: 0;
+    }
+
+    .info-list li {
+      margin-bottom: 0.3rem;
+    }
+
+    .info-tagline {
+      margin-top: 0.7rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .faq {
+      margin-top: 0.4rem;
+    }
+
+    .faq dt {
+      font-weight: 600;
+      margin-top: 0.4rem;
+    }
+
+    .faq dd {
+      margin: 0.1rem 0 0.4rem;
+      color: var(--muted);
+    }
+
+    footer {
+      border-top: 1px solid rgba(15,23,42,0.95);
+      padding: 1.3rem 1.25rem 2rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      background: #020617;
+    }
+
+    footer-inner {
+      max-width: 1100px;
+    }
+
+    .footer-main {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 0.9rem;
+    }
+
+    /* RESPONSIVE */
+
+    @media (min-width: 720px) {
+      .nav-links { display: flex; }
+      .hero { grid-template-columns: minmax(0,1.1fr) minmax(0,1fr); }
+    }
+
+    @media (max-width: 640px) {
+      main { padding-inline: 1rem; }
+      .tonight { grid-template-columns: minmax(0,1fr); }
+      .gallery-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .info-grid { grid-template-columns: minmax(0,1fr); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <div class="nav-left">
+        <div class="logo-mark">F</div>
+        <div class="nav-title">
+          <span>233 S MAIN ST • SOUTH BEND</span>
+          <span>Finnies Next Door</span>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#tonight">Tonight</a>
+        <a href="#events">Events</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#visit">Visit</a>
+      </div>
+      <a href="#visit" class="nav-cta">Get Directions</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div>
+        <div class="hero-badge">
+          Irish Sports Pub
+          <span>+ Late-Night Club</span>
+        </div>
+        <h1>
+          Party like a champion at the
+          <span class="hero-highlight">Golden Dome Bar</span>
+        </h1>
+        <p>
+          Finnies Next Door is South Bend’s Irish sports pub turned late-night party —
+          DJs, live bands, and an electric dance floor wrapped around a Golden Dome bar
+          inspired by Notre Dame.
+        </p>
+
+        <div class="hero-meta">
+          <span class="pill">DJs & live bands</span>
+          <span class="pill">Sim Bros Golf • Pool • Darts • Air hockey</span>
+          <span class="pill">Downtown • 21+</span>
+        </div>
+
+        <div class="hero-ctas">
+          <a href="#tonight"><button class="btn-primary">Tonight at Finnies</button></a>
+          <a href="#events"><button class="btn-secondary">View upcoming events</button></a>
+        </div>
+
+        <div class="hero-footnote">
+          Service options: great cocktails • dancing • no reservations — just show up ready.
+        </div>
+      </div>
+
+      <div class="hero-media">
+        <!-- Replace src with your crowd / dome photo -->
+        <img src="images/finnies-dome-crowd-01.jpg" alt="Packed crowd around the Golden Dome bar at Finnies Next Door">
+        <div class="hero-tag">
+          <span class="hero-tag-dot"></span>
+          Game day &amp; weekends: wall-to-wall energy.
+        </div>
+      </div>
+    </section>
+
+    <!-- TONIGHT -->
+    <section id="tonight">
+      <div class="section-header">
+        <h2>Tonight at Finnies</h2>
+        <span>Hours &amp; vibe update</span>
+      </div>
+
+      <div class="tonight">
+        <div class="tonight-main">
+          <h3>Doors open late — party goes later.</h3>
+          <p>
+            Thursday through Saturday we’re pouring at 10&nbsp;PM and packing the dance
+            floor with DJs, lights, and a full bar wrapped around the Golden Dome.
+          </p>
+          <div class="tonight-grid">
+            <div class="chip">
+              <strong>Thursday</strong><br>
+              10&nbsp;PM – 2&nbsp;AM<br>
+              College night • DJ
+            </div>
+            <div class="chip">
+              <strong>Friday</strong><br>
+              10&nbsp;PM – 3&nbsp;AM<br>
+              Weekend kickoff • DJs
+            </div>
+            <div class="chip">
+              <strong>Saturday</strong><br>
+              10&nbsp;PM – 3&nbsp;AM<br>
+              Game-day &amp; theme nights
+            </div>
+            <div class="chip">
+              <strong>Sun–Wed</strong><br>
+              Closed (available for private events)
+            </div>
+          </div>
+        </div>
+
+        <div class="tonight-side">
+          <strong>Address</strong>
+          <div>233 S Main St, South Bend, IN 46601</div>
+          <div class="tonight-hours">
+            Phone: <a href="tel:+15744046100">(574) 404-6100</a><br>
+            No reservations • 21+ with valid ID • Cover may apply on busy nights.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section>
+      <div class="section-header">
+        <h2>The Finnies experience</h2>
+        <span>More than just another bar</span>
+      </div>
+
+      <div class="features">
+        <article class="feature-card">
+          <div class="feature-label">Centerpiece</div>
+          <h3>The Golden Dome Bar</h3>
+          <p>
+            Order a drink under the copper dome crowned with Mary —
+            a South Bend icon and the heart of every Finnies night.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-label">Entertainment</div>
+          <h3>DJs, live bands &amp; dancing</h3>
+          <p>
+            From club nights to theme parties and game-day after-parties,
+            our sound and lighting keep the floor moving until close.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-label">Games</div>
+          <h3>Sim Bros Golf &amp; more</h3>
+          <p>
+            Challenge friends on Sim Bros Golf, or grab a drink between
+            rounds of pool, darts, and air hockey.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- EVENTS PREVIEW -->
+    <section id="events">
+      <div class="section-header">
+        <h2>Upcoming events</h2>
+        <span>Sample line-up (replace with live feed later)</span>
+      </div>
+
+      <div class="events">
+        <article class="event-card">
+          <div class="event-meta">
+            <span>Thu • 10&nbsp;PM</span>
+            <span>21+</span>
+          </div>
+          <div class="event-title">College Night Kickoff</div>
+          <p>
+            Resident DJ spinning all-night — perfect first stop before Main Street hopping.
+          </p>
+          <div class="event-tag">DJ • Drink specials</div>
+        </article>
+
+        <article class="event-card">
+          <div class="event-meta">
+            <span>Fri • 10&nbsp;PM</span>
+            <span>21+</span>
+          </div>
+          <div class="event-title">Weekend at the Dome</div>
+          <p>
+            House lights down, neon up. Dance floor packed around the Golden Dome bar.
+          </p>
+          <div class="event-tag">Club night</div>
+        </article>
+
+        <article class="event-card">
+          <div class="event-meta">
+            <span>Sat • After ND home game</span>
+            <span>21+</span>
+          </div>
+          <div class="event-title">Irish Game-Day After-Party</div>
+          <p>
+            Walk over from the stadium or hotels — the party is waiting on Main Street.
+          </p>
+          <div class="event-tag">Game-day</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+      <div class="section-header">
+        <h2>Inside Finnies</h2>
+        <span>Drop-in photo highlights</span>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-img large">
+          <img src="images/finnies-dome-crowd-02.jpg" alt="Packed crowd around the Golden Dome bar">
+        </div>
+        <div class="gallery-img">
+          <img src="images/finnies-sign.jpg" alt="Finnies bar & grill sign on Main Street">
+        </div>
+        <div class="gallery-img">
+          <img src="images/finnies-dome-blue.jpg" alt="Golden Dome bar lit in blue light">
+        </div>
+        <div class="gallery-img large">
+          <img src="images/finnies-bar-floor.jpg" alt="Bar and dance floor at Finnies Next Door">
+        </div>
+      </div>
+    </section>
+
+    <!-- INFO / VISIT -->
+    <section id="visit">
+      <div class="section-header">
+        <h2>Visit & info</h2>
+        <span>Plan your night on Main Street</span>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>Find us</h3>
+          <ul class="info-list">
+            <li><strong>Address:</strong> 233 S Main St, South Bend, IN 46601</li>
+            <li><strong>Phone:</strong> <a href="tel:+15744046100">(574) 404-6100</a></li>
+            <li><strong>Instagram:</strong> @finniesnextdoor</li>
+          </ul>
+          <p class="info-tagline">
+            Parking is available in nearby downtown ramps and on-street spots.
+            Just look for the Finnies shamrock sign and the dome inside.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <h3>Good to know</h3>
+          <dl class="faq">
+            <dt>Do you take reservations?</dt>
+            <dd>No — we’re walk-in only. Arrive early on busy weekends and Irish game days.</dd>
+
+            <dt>Is there dancing?</dt>
+            <dd>Yes. Finnies is an Irish sports pub that turns into a full-on nightlife spot with DJs, live bands, and dancing.</dd>
+
+            <dt>What’s the dress code?</dt>
+            <dd>Casual but put-together. Jerseys and game-day fits welcome, no excessive bagginess or unsafe items.</dd>
+
+            <dt>Are private parties available?</dt>
+            <dd>
+              Yes. Reach out by phone or DM for group events, alumni weekends, and celebrations at the Golden Dome bar.
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-main">
+      <div>
+        © <span id="year"></span> Finnies Next Door • Irish Sports Pub &amp; Nightlife
+      </div>
+      <div class="footer-links">
+        <a href="#top">Back to top</a>
+      </div>
+    </div>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </footer>
+</body>
+</html>
