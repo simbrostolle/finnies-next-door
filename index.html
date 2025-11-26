@@ -39,51 +39,49 @@
 
     /* BIG GOLDEN DOME BACKGROUND - enhanced, less zoomed, offset left */
     /* CLEAN, BRIGHT, LESS ZOOMED, LEFT-OFFSET DOME BACKGROUND */
+/* Golden Dome background: left side, clear, less zoomed */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -2;
+
+  /* main dome image */
   background:
-    linear-gradient(
-      to bottom,
-      rgba(255,255,255,0.03),
-      rgba(255,255,255,0.03)
-    ),
+    linear-gradient(to right, rgba(250,247,239,0.2), rgba(250,247,239,0.05)),
     url("images/finnies-dome-bg-enhanced.png");
-  background-size: 55%; /* MUCH less zoomed */
-  background-position: left -120px top -50px; /* push left + up */
+
+  /* show most of the dome, not zoomed in */
+  background-size: auto 90%;    /* height ~90% of screen, width auto */
+  background-position: left center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  opacity: 1; /* full clarity */
 }
+
 
 /* Lighter, almost invisible overlay so BG stays sharp */
 .page {
-  background: rgba(250,247,239,0.25);  /* WAY lighter */
-  backdrop-filter: blur(2px); /* barely any blur */
   min-height: 100vh;
+  background: rgba(250,247,239,0.45);  /* light, not washing things out */
+  backdrop-filter: blur(3px);
 }
 
-/* Shift all main content to the right to get out of the dome */
+
 .hero {
   display: grid;
-  grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+  grid-template-columns: minmax(0,1.1fr) minmax(0,1fr);
   gap: 2.5rem;
   align-items: center;
   padding-top: 2rem;
-
-  /* Push everything to the right */
-  padding-left: 32%;
 }
 
-/* Mobile fallback */
-@media (max-width: 900px) {
+/* mobile: go back to normal full-width */
+@media (max-width: 768px) {
   .hero {
-    padding-left: 0;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0,1fr);
   }
 }
+
 
 
     /* Frosted glass layer over background */
