@@ -16,7 +16,7 @@
       --gold: #d4a625;                /* classic Irish pub gold */
       --gold-bright: #f7cc55;         /* ND gold highlight */
 
-      --navy: #0a1a44;                /* ND  navy */
+      --navy: #0a1a44;                /* ND navy */
       --navy-light: #12306e;
 
       --text-dark: #12212d;
@@ -37,7 +37,7 @@
       line-height: 1.5;
     }
 
-    /* BIG GOLDEN DOME BACKGROUND */
+    /* BIG GOLDEN DOME BACKGROUND - enhanced, less zoomed, offset left */
     body::before {
       content: "";
       position: fixed;
@@ -46,12 +46,16 @@
       background:
         linear-gradient(
           to bottom,
-          rgba(255,255,255,0.2),
-          rgba(255,255,255,0.05),
-          rgba(0,0,0,0.25)
+          rgba(255,255,255,0.08),
+          rgba(255,255,255,0.03),
+          rgba(0,0,0,0.12)
         ),
-        url("images/finnies-dome-bg.png") center top / cover no-repeat;
-      background-attachment: fixed; /* parallax-style scroll */
+        url("images/finnies-dome-bg-enhanced.png");
+      /* Less zoomed and pushed left */
+      background-size: 75%;
+      background-position: left 0px top -40px;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
     }
 
     /* Frosted glass layer over background */
@@ -198,15 +202,19 @@
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0,1.2fr) minmax(0,1fr);
-      gap: 1.75rem;
+      grid-template-columns: minmax(0,1.05fr) minmax(0,1fr);
+      gap: 2.5rem;
       align-items: center;
-      padding-top: 0.5rem;
+      padding-top: 1.5rem;
+
+      /* Shift hero content to the right so dome sits left */
+      padding-left: 18%;
     }
 
     @media (max-width: 768px) {
       .hero {
         grid-template-columns: minmax(0,1fr);
+        padding-left: 0;
       }
     }
 
@@ -315,6 +323,7 @@
       display: flex;
       flex-direction: column;
       gap: 0.7rem;
+      margin-right: 4%; /* nudge image further right */
     }
 
     .hero-card img {
@@ -612,7 +621,7 @@
       <section class="hero" id="top">
         <div>
           <div class="hero-badge">
-            Irish Pub • <span>Nightlife</span> • Live DJ
+            Irish Pub • <span>Nightlife</span> • ND Vibes
           </div>
           <h1>
             Party under the
