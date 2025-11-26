@@ -6,17 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      --cream: #faf7ef;               /* warm pub wall */
+      --cream: #faf7ef;
       --cream-soft: #f2eee4;
 
-      --green-dark: #065f35;          /* shamrock green */
-      --green: #0f8a47;               /* Irish pub emerald */
-      --green-bright: #29d77f;        /* highlight green */
+      --green-dark: #065f35;
+      --green: #0f8a47;
+      --green-bright: #29d77f;
 
-      --gold: #d4a625;                /* classic Irish pub gold */
-      --gold-bright: #f7cc55;         /* ND gold highlight */
+      --gold: #d4a625;
+      --gold-bright: #f7cc55;
 
-      --navy: #0a1a44;                /* ND navy */
+      --navy: #0a1a44;
       --navy-light: #12306e;
 
       --text-dark: #12212d;
@@ -33,62 +33,12 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
       color: var(--text-dark);
       min-height: 100vh;
-      background-color: var(--navy);
+      background: radial-gradient(circle at top left, #fdfaf3 0%, #dde5f1 40%, #cfd7e5 100%);
       line-height: 1.5;
     }
 
-    /* BIG GOLDEN DOME BACKGROUND - enhanced, less zoomed, offset left */
-    /* CLEAN, BRIGHT, LESS ZOOMED, LEFT-OFFSET DOME BACKGROUND */
-/* Golden Dome background: left side, clear, less zoomed */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-
-  /* main dome image */
-  background:
-    linear-gradient(to right, rgba(250,247,239,0.2), rgba(250,247,239,0.05)),
-    url("images/finnies-dome-bg.png");
-
-  /* show most of the dome, not zoomed in */
-  background-size: auto 90%;    /* height ~90% of screen, width auto */
-  background-position: left center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-
-
-/* Lighter, almost invisible overlay so BG stays sharp */
-.page {
-  min-height: 100vh;
-  background: rgba(250,247,239,0.45);  /* light, not washing things out */
-  backdrop-filter: blur(3px);
-}
-
-
-.hero {
-  display: grid;
-  grid-template-columns: minmax(0,1.1fr) minmax(0,1fr);
-  gap: 2.5rem;
-  align-items: center;
-  padding-top: 2rem;
-}
-
-/* mobile: go back to normal full-width */
-@media (max-width: 768px) {
-  .hero {
-    grid-template-columns: minmax(0,1fr);
-  }
-}
-
-
-
-    /* Frosted glass layer over background */
     .page {
       min-height: 100vh;
-      background: rgba(250,247,239,0.7);
-      backdrop-filter: blur(8px);
     }
 
     a { color: inherit; text-decoration: none; }
@@ -111,15 +61,12 @@ body::before {
       justify-content: space-between;
       gap: 1rem;
 
-      /* retro Irish pub bar */
-      background:
-        linear-gradient(to bottom, #0f6b3a, #0a5a30);
+      background: linear-gradient(to bottom, #0f6b3a, #0a5a30);
       border-bottom: 4px solid var(--gold);
       box-shadow: 0 4px 12px rgba(0,0,0,0.4);
       position: relative;
     }
 
-    /* glossy highlight strip */
     .nav::after {
       content: "";
       position: absolute;
@@ -216,6 +163,10 @@ body::before {
       box-shadow: 0 2px 4px rgba(0,0,0,0.6);
     }
 
+    @media (min-width: 820px) {
+      .nav-links { display: flex; }
+    }
+
     /* MAIN LAYOUT */
 
     main {
@@ -228,19 +179,15 @@ body::before {
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0,1.05fr) minmax(0,1fr);
+      grid-template-columns: minmax(0,1.1fr) minmax(0,1.1fr);
       gap: 2.5rem;
       align-items: center;
-      padding-top: 1.5rem;
-
-      /* Shift hero content to the right so dome sits left */
-      padding-left: 18%;
+      padding-top: 2rem;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
       .hero {
         grid-template-columns: minmax(0,1fr);
-        padding-left: 0;
       }
     }
 
@@ -265,11 +212,10 @@ body::before {
 
     .hero h1 {
       margin: 0.9rem 0 0.6rem;
-      font-size: clamp(2.1rem, 3.3vw, 3rem);
+      font-size: clamp(2.2rem, 3.5vw, 3.2rem);
       text-transform: uppercase;
       letter-spacing: 0.14em;
       color: var(--navy);
-      text-shadow: 0 1px 2px rgba(255,255,255,0.7);
     }
 
     .hero-highlight {
@@ -340,34 +286,50 @@ body::before {
       color: var(--muted);
     }
 
-    .hero-card {
-      border-radius: 1.5rem;
-      padding: 1rem;
-      background: var(--cream-soft);
-      border: 1px solid rgba(15,23,42,0.12);
-      box-shadow: 0 18px 48px rgba(0,0,0,0.25);
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-      margin-right: 4%; /* nudge image further right */
+    /* HERO ARCH CARD (Golden Dome like the example) */
+
+    .hero-arch {
+      border-radius: 1.8rem;
+      padding: 0.9rem 0.9rem 1rem;
+      background: rgba(255,255,255,0.94);
+      box-shadow: 0 18px 48px rgba(15,23,42,0.35);
+      position: relative;
+      overflow: hidden;
     }
 
-    .hero-card img {
+    .hero-arch-image {
       width: 100%;
-      height: auto;
-      border-radius: 1.1rem;
+      height: 320px;
+      border-radius: 999px 999px 0 0;   /* ARCH SHAPE */
+      overflow: hidden;
+      background-image: url("images/finnies-dome-bg-enhanced.png");
+      background-size: cover;
+      background-position: center top;
     }
 
-    .hero-card-caption {
+    .hero-arch-caption {
+      margin-top: 0.7rem;
       font-size: 0.78rem;
       color: var(--muted);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.75rem;
     }
 
-    .hero-dot {
+    .hero-arch-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(15,135,71,0.08);
+      border: 1px solid rgba(15,135,71,0.25);
+      font-size: 0.7rem;
+      color: var(--green-dark);
+    }
+
+    .hero-arch-dot {
       width: 8px;
       height: 8px;
       border-radius: 999px;
@@ -592,10 +554,6 @@ body::before {
       .info-grid { grid-template-columns: minmax(0,1fr); }
     }
 
-    @media (min-width: 820px) {
-      .nav-links { display: flex; }
-    }
-
     footer {
       padding: 1.2rem 1.25rem 2rem;
       border-top: 3px solid var(--gold);
@@ -650,7 +608,7 @@ body::before {
             Irish Pub • <span>Nightlife</span> • ND Vibes
           </div>
           <h1>
-            Party under the
+            Party under the<br />
             <span class="hero-highlight">Golden Dome Bar</span>
           </h1>
           <p>
@@ -675,11 +633,14 @@ body::before {
           </div>
         </div>
 
-        <div class="hero-card">
-          <img src="images/finniesdome1.webp" alt="Crowd around the Golden Dome bar inside Finnies Next Door">
-          <div class="hero-card-caption">
-            <span>Typical ND weekend: wall-to-wall around the dome.</span>
-            <span class="hero-dot"></span>
+        <div class="hero-arch">
+          <div class="hero-arch-image"></div>
+          <div class="hero-arch-caption">
+            <span>South Bend’s Golden Dome — reimagined as a bar centerpiece.</span>
+            <span class="hero-arch-badge">
+              <span class="hero-arch-dot"></span>
+              Typical ND weekend: wall-to-wall around the dome.
+            </span>
           </div>
         </div>
       </section>
@@ -706,161 +667,3 @@ body::before {
                 College night • DJ
               </div>
               <div class="tonight-pill">
-                <strong>Friday</strong><br>
-                10&nbsp;PM – 3&nbsp;AM<br>
-                Weekend kickoff • club vibes
-              </div>
-              <div class="tonight-pill">
-                <strong>Saturday</strong><br>
-                10&nbsp;PM – 3&nbsp;AM<br>
-                Game-day &amp; theme nights
-              </div>
-              <div class="tonight-pill">
-                <strong>Sun–Wed</strong><br>
-                Closed (available for private events)
-              </div>
-            </div>
-          </div>
-
-          <div class="tonight-side">
-            <strong>Address</strong><br>
-            233 S Main St, South Bend, IN 46601<br><br>
-            Phone: <a href="tel:+15744046100">(574) 404-6100</a><br>
-            21+ with valid ID • Cover may apply on busy nights • Walk-in only.
-          </div>
-        </div>
-      </section>
-
-      <!-- FEATURES -->
-      <section>
-        <div class="section-header">
-          <h2>The Finnies experience</h2>
-          <span>Why people pack this place</span>
-        </div>
-        <div class="features">
-          <article class="feature">
-            <div class="feature-label">Centerpiece</div>
-            <h3>The Golden Dome bar</h3>
-            <p>
-              Order a drink under a copper dome crowned with Mary — a South Bend icon
-              and the heart of every Finnies night.
-            </p>
-          </article>
-          <article class="feature">
-            <div class="feature-label">Entertainment</div>
-            <h3>DJs, bands &amp; dancing</h3>
-            <p>
-              From club nights to themed parties and ND game after-parties, the sound
-              and lighting keep the dance floor packed to close.
-            </p>
-          </article>
-          <article class="feature">
-            <div class="feature-label">Games</div>
-            <h3>Sim Bros Golf &amp; more</h3>
-            <p>
-              Between rounds of drinks, battle it out on Sim Bros Golf, or head to
-              pool, darts, and air hockey.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <!-- EVENTS -->
-      <section id="events">
-        <div class="section-header">
-          <h2>Sample events</h2>
-          <span>You can swap this with a real calendar later</span>
-        </div>
-        <div class="events">
-          <article class="event-card">
-            <div class="event-meta">
-              <span>Thu • 10&nbsp;PM</span>
-              <span>21+</span>
-            </div>
-            <div class="event-title">College Night Kickoff</div>
-            <p>
-              Resident DJ, drink specials, and the perfect warm-up for a Main Street run.
-            </p>
-            <div class="event-tag">DJ • Specials</div>
-          </article>
-
-          <article class="event-card">
-            <div class="event-meta">
-              <span>Fri • 10&nbsp;PM</span>
-              <span>21+</span>
-            </div>
-            <div class="event-title">Weekend at the Dome</div>
-            <p>
-              Lights down, ND crowd up. Club energy, Golden Dome bar at the center.
-            </p>
-            <div class="event-tag">Club Night</div>
-          </article>
-
-          <article class="event-card">
-            <div class="event-meta">
-              <span>Sat • After ND home game</span>
-              <span>21+</span>
-            </div>
-            <div class="event-title">Irish Game-Day After-Party</div>
-            <p>
-              Walk over from the stadium or your hotel — the dome bar is the overflow
-              section for the student section.
-            </p>
-            <div class="event-tag">Game Day</div>
-          </article>
-        </div>
-      </section>
-
-      <!-- VISIT / INFO -->
-      <section id="info">
-        <div class="section-header">
-          <h2>Visit & info</h2>
-          <span>Everything you need to know</span>
-        </div>
-
-        <div class="info-grid">
-          <div class="info-card">
-            <h3>Find us</h3>
-            <ul class="info-list">
-              <li><strong>Address:</strong> 233 S Main St, South Bend, IN 46601</li>
-              <li><strong>Phone:</strong> <a href="tel:+15744046100">(574) 404-6100</a></li>
-              <li><strong>Instagram:</strong> @finniesnextdoor</li>
-            </ul>
-            <p style="color: var(--muted);">
-              Downtown parking ramps and street spots are all a short walk away.
-              Just look for the shamrock sign and listen for the music.
-            </p>
-          </div>
-
-          <div class="info-card">
-            <h3>FAQ</h3>
-            <dl class="faq">
-              <dt>Do you take reservations?</dt>
-              <dd>Nope — Finnies is walk-in only. Arrive early on busy weekends and ND home games.</dd>
-
-              <dt>Is there dancing?</dt>
-              <dd>Yes. Once the DJs and bands get going, the floor around the Golden Dome becomes the dance floor.</dd>
-
-              <dt>Dress code?</dt>
-              <dd>Casual, game-day friendly. Jerseys and ND fits welcome — just no super-baggy or unsafe items.</dd>
-
-              <dt>Private events?</dt>
-              <dd>Yes. Reach out by phone or DM to talk through ND weekends, alumni events, and group parties.</dd>
-            </dl>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div class="footer-inner">
-        <span>© <span id="year"></span> Finnies Next Door • Irish Pub &amp; Nightlife</span>
-        <a href="#top">Back to top</a>
-      </div>
-      <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-      </script>
-    </footer>
-  </div>
-</body>
-</html>
